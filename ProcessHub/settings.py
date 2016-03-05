@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'authentication.ApplicationUser'
 
 # Application definition
 
@@ -37,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'standup.apps.StandupConfig'
+    'standup.apps.StandupConfig',
+    'authentication.apps.AuthenticationConfig'
 ]
 
 MIDDLEWARE_CLASSES = [
