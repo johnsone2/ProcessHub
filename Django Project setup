@@ -1,0 +1,26 @@
+# Django Project setup
+1) Make virtual environment
+2) Activate virtual env
+	- \path\to\venv\Scripts\activate
+3) Install Django
+	- CP: pip install Django
+4) Create Project
+	- go to directory you want your project to live in
+	- CP: django-admin startproject {project name}
+5) Open project thru PyCharm
+6) Configure Project Interpreter
+	- Open Project Structure (ctrl+alt+s)
+	- Select Project: {project name} -> Project Interpreter and add your Virtual environment 
+		- Click gearbox to right of Project Interpreter dropdown -> Add Local
+		- Find your virtual environment and select Scripts\python.exe
+7) Configure your Content Root
+	- Open Project Structure (ctrl+alt+s)
+	- Select Project: {project name} -> Project Structure
+	- Select project directory and "Mark as: Sources"
+8) Add python script runner
+	- Config dropdown -> Edit configurations
+	- + Python
+	- Script = \path\to\project\manage.py
+	- Script parameters = runserver 8000
+9) Create an application
+	- CP: python manage.py startapp {app name}
