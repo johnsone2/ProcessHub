@@ -4,10 +4,15 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
+from authentication.models import ApplicationUser
+
+
 def insert_data(apps, schema_editor):
     Org = apps.get_model('authentication', 'Organization')
     org = Org(name="Test Org")
     org.save()
+
+    ApplicationUser.objects.create_user("e@j.com", "e", "j", 1, True, "Password123")
 
 
 class Migration(migrations.Migration):

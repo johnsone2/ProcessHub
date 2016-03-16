@@ -14,7 +14,7 @@ class ApplicationUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = ApplicationUser
-        fields = ('email', 'first_name', 'last_name', 'organization', 'is_active', 'is_admin')
+        fields = ('email', 'first_name', 'last_name', 'organization', 'is_active')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -36,18 +36,18 @@ class ApplicationUserChangeForm(forms.ModelForm):
 
     class Meta:
         model = ApplicationUser
-        fields = ('email', 'first_name', 'last_name', 'organization', 'is_active', 'is_admin')
+        fields = ('email', 'first_name', 'last_name', 'organization', 'is_active')
 
 
 class ApplicationUserAdmin(UserAdmin):
     form = ApplicationUserChangeForm
     add_form = ApplicationUserCreationForm
 
-    list_display = ('email', 'first_name', 'last_name', 'organization', 'is_active', 'is_admin')
+    list_display = ('email', 'first_name', 'last_name', 'organization', 'is_active')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal Info', {'fields': ('first_name', 'last_name')}),
-        ('Permissions', {'fields': ('organization', 'is_admin')})
+        ('Permissions', {'fields': ('organization',)})
     )
 
     search_fields = ('email',)

@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.db import models
 
@@ -5,27 +7,27 @@ from django.db import models
 # Create your models here.
 
 class CustomUserManager(BaseUserManager):
-    def create_user(self, email, first_name, last_name, organization, is_active, is_admin, password=None):
+    def create_user(self, email, first_name, last_name, organization_id, is_active, password=None):
         if not email:
             raise ValueError("Users must have an email address")
 
         email = self.normalize_email(email)
 
         user = self.model(
+            id=str(uuid4()),
             email=email,
             first_name=first_name,
             last_name=last_name,
-            organization=organization,
-            password=password,
-            is_active=is_active,
-            is_admin=is_admin
+            organization_id=organization_id,
+            is_active=is_active
         )
+        user.set_password(password)
         user.save()
 
         return user
 
-    def create_super_user(self, email, first_name, last_name, organization, is_active, password):
-        user = self.create_user(email, first_name, last_name, organization, is_active, True, password)
+    def create_superuser(self, email, first_name, last_name, organization, password):
+        user = self.create_user(email, first_name, last_name, organization, True, password)
 
         return user
 
@@ -39,6 +41,7 @@ class Organization(models.Model):
 
 
 class ApplicationUser(AbstractBaseUser):
+
     def get_short_name(self):
         return self.first_name
 
@@ -56,7 +59,6 @@ class ApplicationUser(AbstractBaseUser):
     last_name = models.CharField(max_length=64, blank=False, null=False)
     organization = models.ForeignKey(Organization, null=False, on_delete=models.PROTECT)
     is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)
 
     def __str__(self):
@@ -67,9 +69,6 @@ class ApplicationUser(AbstractBaseUser):
 
     def has_module_perm(self, app_label):
         return True
-
-    def is_staff(self):
-        return self.is_admin
 
     class Meta:
         db_table = "application_user"

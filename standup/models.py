@@ -9,13 +9,16 @@ from authentication.models import ApplicationUser
 
 class Project(models.Model):
     name = models.CharField(max_length=64)
-    jira_project_key = models.CharField(max_length=128, null=True)
-    created_by_user = models.ForeignKey(ApplicationUser, null=True)
+    jira_project_key = models.CharField(max_length=128, null=True, blank=True)
+    created_by_user = models.ForeignKey(ApplicationUser, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
 
 class StandupTask(models.Model):
     description = models.CharField(max_length=128)
-    jira_issue_key = models.CharField(max_length=128, null=True)
+    jira_issue_key = models.CharField(max_length=128, null=True, blank=True)
     project = models.ForeignKey(Project, on_delete=models.PROTECT)
     created_by_user = models.ForeignKey(ApplicationUser, on_delete=models.PROTECT)
     date_created = models.DateTimeField(auto_now_add=True)

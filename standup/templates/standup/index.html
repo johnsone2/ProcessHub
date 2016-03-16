@@ -1,0 +1,18 @@
+<head></head>
+<body>
+<form action="/standup/" method="post">
+    <div>
+
+    <select style="width: 50%" name="jira_issue_key">
+        <option value="">---</option>
+        {% for issue in jira_issues %}
+        <option value="{{issue.id}}">{{issue.fields.summary}}</option>
+        {% endfor %}
+    </select>
+    </div>
+    {% csrf_token %}
+    {{standup_task_form}}
+    {{standup_task_work_form}}
+    <button type="submit">Submit</button>
+</form>
+</body>

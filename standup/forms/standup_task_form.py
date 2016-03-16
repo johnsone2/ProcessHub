@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 
-from models import StandupTask, StandupTaskWork
+from standup.models import StandupTask, StandupTaskWork
 
 
 class StandupTaskForm(ModelForm):
@@ -19,3 +19,4 @@ class StandupTaskWorkForm(ModelForm):
     class Meta:
         model = StandupTaskWork
         fields = ('time_spent_in_hours', 'expected_outcome', 'actual_outcome')
+

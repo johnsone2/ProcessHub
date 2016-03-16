@@ -1,3 +1,5 @@
+import os
+
 import slumber
 from slumber.exceptions import HttpClientError
 
@@ -6,7 +8,11 @@ from common.binding_models.jira_issues import JiraIssue
 
 class JiraClientService:
     def __init__(self):
-        self.jira_api = slumber.API("https://marketonce.atlassian.net/rest/api/2", append_slash=False, auth=("erik.johnson", "Ejoe5880"))
+        self.jira_api = slumber.API(
+            os.environ.get("JIRA_API_BASE_URL"),
+            append_slash=False,
+            auth=(os.environ.get('JIRA_API_USERNAME'), os.environ.get("JIRA_API_PASSWORD"))
+        )
 
     def get_issues_in_project(self, project_key):
         try:
