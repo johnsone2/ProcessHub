@@ -1,12 +1,16 @@
-<head></head>
+<head>
+    {% load staticfiles %}
+    <script src="{% static 'standup/jquery-2.2.1.min.js' %}"></script>
+    <script src="{% static 'standup/standup.js' %}"></script>
+</head>
 <body>
 <form action="/standup/" method="post">
     <div>
 
-    <select style="width: 50%" name="jira_issue_key">
+    <select style="width: 50%" id="jira_issue_dropdown" name="jira_issue_key">
         <option value="">---</option>
         {% for issue in jira_issues %}
-        <option value="{{issue.id}}">{{issue.fields.summary}}</option>
+        <option value="{{issue.key}}">{{issue.fields.summary}}</option>
         {% endfor %}
     </select>
     </div>

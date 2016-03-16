@@ -14,7 +14,7 @@ class StandupTaskForm(ModelForm):
 
 class StandupTaskWorkForm(ModelForm):
     def get_time_spent_in_hours(self):
-        return self.data.get('time_spent_in_hours')
+        return int(self.data.get('time_spent_in_hours'))
 
     class Meta:
         model = StandupTaskWork

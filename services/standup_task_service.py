@@ -26,7 +26,7 @@ class StandupTaskService():
         if standup_task_form.get_jira_issue_key():
             self.jira_client_service.log_time_on_issue(
                 standup_task_form.get_jira_issue_key(),
-                standup_task_work_form.get_time_worked_in_hours()
+                standup_task_work_form.get_time_spent_in_hours()
             )
 
         return standup_task.id
