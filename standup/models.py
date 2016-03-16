@@ -7,9 +7,16 @@ from django.db import models
 from authentication.models import ApplicationUser
 
 
+class Project(models.Model):
+    name = models.CharField(max_length=64)
+    jira_project_key = models.CharField(max_length=128, null=True)
+    created_by_user = models.ForeignKey(ApplicationUser, null=True)
+
+
 class StandupTask(models.Model):
     description = models.CharField(max_length=128)
-    jira_issue_id = models.IntegerField()
+    jira_issue_key = models.CharField(max_length=128, null=True)
+    project = models.ForeignKey(Project, on_delete=models.PROTECT)
     created_by_user = models.ForeignKey(ApplicationUser, on_delete=models.PROTECT)
     date_created = models.DateTimeField(auto_now_add=True)
     initial_estimate_in_hours = models.DecimalField(max_digits=5, decimal_places=2)
