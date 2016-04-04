@@ -31,6 +31,9 @@ class StandupTaskService():
 
         return standup_task.id
 
+    def blah(self):
+        context = ""
+
     def get_all_standup_tasks_for_org(self,org_id):
         if not org_id is int:
             raise ValueError("org_id must be an integer")

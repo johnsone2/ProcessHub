@@ -18,5 +18,5 @@ class StandupTaskWorkForm(ModelForm):
 
     class Meta:
         model = StandupTaskWork
-        fields = ('time_spent_in_hours', 'expected_outcome', 'actual_outcome')
+        fields = ('time_spent_in_hours', 'expected_outcome', 'actual_outcome', 'description')
 

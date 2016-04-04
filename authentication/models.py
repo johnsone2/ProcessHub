@@ -14,7 +14,6 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
 
         user = self.model(
-            id=str(uuid4()),
             email=email,
             first_name=first_name,
             last_name=last_name,
@@ -53,7 +52,6 @@ class ApplicationUser(AbstractBaseUser):
 
     objects = CustomUserManager()
 
-    identifier = models.CharField(max_length=36, unique=True)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=64, blank=False, null=False)
     last_name = models.CharField(max_length=64, blank=False, null=False)

@@ -23,11 +23,14 @@ class Migration(migrations.Migration):
                 ('jira_project_id', models.IntegerField()),
                 ('created_by_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
+            options={
+                'db_table': 'project',
+            },
         ),
         migrations.AddField(
             model_name='standuptask',
             name='project',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.PROTECT, to='standup.Project'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.PROTECT, to='project'),
             preserve_default=False,
         ),
     ]
