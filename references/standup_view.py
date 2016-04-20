@@ -33,14 +33,10 @@ class StandupTaskView(LoginRequiredMixin, View):
         return context
 
     def get(self, request):
-        context = self._get_context(StandupTaskForm(), StandupTaskWorkForm())
-        standup_task_service = StandupTaskService()
-
-        standup_tasks = standup_task_service.get_standup_tasks_for_user(request.user.id)
-        context['standup_tasks'] = standup_tasks
+        context = self._get_context(StandupTaskForm(), StandupTaskWorkForm(), blah="blah", foo="bar")
         return render(request, 'standup/index.html', context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         request_body = parse_request_body(request)
 
         standup_task_form = StandupTaskForm(request_body)

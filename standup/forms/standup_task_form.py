@@ -9,7 +9,7 @@ class StandupTaskForm(ModelForm):
 
     class Meta:
         model = StandupTask
-        fields = ('description', 'project', 'jira_issue_key', 'initial_estimate_in_hours')
+        fields = ('description', 'project', 'initial_estimate_in_hours')
 
 
 class StandupTaskWorkForm(ModelForm):
@@ -18,5 +18,5 @@ class StandupTaskWorkForm(ModelForm):
 
     class Meta:
         model = StandupTaskWork
-        fields = ('time_spent_in_hours', 'expected_outcome', 'actual_outcome', 'description')
+        fields = ('time_spent_in_hours', 'expected_outcome', 'actual_outcome')
 

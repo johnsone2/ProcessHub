@@ -22,7 +22,7 @@ class StandupTaskService():
         standup_task = self.standup_task_repository.create_standup_task(standup_task_form.instance)
 
         standup_task_work_form.instance.standup_task = standup_task
-        standup_task_work = self.standup_task_repository.create_standup_task(standup_task_work_form.instance)
+        standup_task_work = self.standup_task_repository.create_standup_task_work(standup_task_work_form.instance)
         if standup_task_form.get_jira_issue_key():
             self.jira_client_service.log_time_on_issue(
                 standup_task_form.get_jira_issue_key(),
@@ -31,20 +31,8 @@ class StandupTaskService():
 
         return standup_task.id
 
-    def blah(self):
-        context = ""
-
-    def get_all_standup_tasks_for_org(self,org_id):
-        if not org_id is int:
-            raise ValueError("org_id must be an integer")
-
-        return self.standup_task_repository.get_all_standup_tasks_for_org(org_id)
-
-    def get_standup_tasks_for_user(self, user_id):
-        if not user_id is int:
+    def get_standup_tasks_for_user(self, user_id, *args, **kwargs):
+        if not isinstance(user_id, int):
             raise ValueError("user_id must be an integer")
 
         return self.standup_task_repository.get_standup_tasks_for_user(user_id)
-
-    def get_standup_task(self, standup_task_id):
-        pass

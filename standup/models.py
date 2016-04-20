@@ -37,7 +37,6 @@ class StandupTask(models.Model):
 
 class StandupTaskWork(models.Model):
     standup_task = models.ForeignKey(StandupTask, on_delete=models.PROTECT)
-    description = models.CharField(max_length=1028)
     time_spent_in_hours = models.DecimalField(max_digits=5, decimal_places=2)
     expected_outcome_choices = [('will_finish', 'Will Finish'), ('wont_finish', "Won't Finish")]
     expected_outcome = models.CharField(blank=True, null=True, max_length=64, choices=expected_outcome_choices)

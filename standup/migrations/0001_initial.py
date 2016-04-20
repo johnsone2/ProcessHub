@@ -27,7 +27,6 @@ class Migration(migrations.Migration):
                 ('is_completed', models.BooleanField(default=False)),
                 ('is_blocked', models.BooleanField(default=False)),
                 ('is_deleted', models.BooleanField(default=False)),
-                ('is_template', models.BooleanField(default=False)),
                 ('created_by_user', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to=settings.AUTH_USER_MODEL)),
             ],
             options={

@@ -50,6 +50,9 @@ class ApplicationUser(AbstractBaseUser):
 
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=64, blank=False, null=False)
+
+    # Type to at least here
+
     last_name = models.CharField(max_length=64, blank=False, null=False)
     organization = models.ForeignKey(Organization, null=False, on_delete=models.PROTECT)
     is_active = models.BooleanField(default=True)

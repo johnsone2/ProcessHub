@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<style>
+    table, th, td {
+   border: 1px solid black;
+}
+</style>
 <div class="row">
     <form action="/standup/" method="post">
+        {% csrf_token %}
+        <h3>Task</h3>
         <div>
             <label for="jira_issue_dropdown">Jira Issue: </label>
             <select style="width: 50%" id="jira_issue_dropdown" name="jira_issue_key">
@@ -11,11 +18,33 @@
                 {% endfor %}
             </select>
         </div>
-        {% csrf_token %}
         {{standup_task_form}}
+        <h3>
+            Work
+        </h3>
         {{standup_task_work_form}}
+        <br/>
         <button type="submit">Submit</button>
     </form>
+</div>
+<div class="row">
+    <h3>
+        Previous Standup Tasks
+    </h3>
+    <table style="border: 1px black;">
+        <tr>
+            <th>Description</th>
+            <th>Date Created</th>
+            <th>Current Status</th>
+        </tr>
+        {% for task in standup_tasks %}
+        <tr>
+            <td>{{ task.description }}</td>
+            <td>{{ task.date_created }}</td>
+            <td>{{ task.work.0.actual_outcome }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 
 
