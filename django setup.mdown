@@ -1,26 +1,32 @@
 # Django Project setup
-1) Make virtual environment
+1) Download Python and install
+    - https://www.python.org/downloads/
+2) Install virtualenv using pip
+    - pip is Python's package manager
+    - `pip install virtualenv`
+    - virtualenv allows you to develop multiple projects with different dependencies simultaneously while keeping the dependencies separated.
+    - it's basically a directory that holds all of the code for any third-party libraries you wish to use (including Django)
+    - documentation: https://virtualenv.pypa.io/en/latest/userguide.html
+3) Make virtual environment for your project
+    - navigate to the directory you want the virtual environment in and run `virtualenv {name of virtual environment}`
+    - I usually call mine something like {Project Name}VE, so for process hub, I have a virtual environment called ProcessHubVE
 2) Activate virtual env
-	- \path\to\venv\Scripts\activate
+	- For windows: \path\to\venv\Scripts\activate
 3) Install Django
-	- CP: pip install Django
+	- `pip install Django``
 4) Create Project
 	- go to directory you want your project to live in
-	- CP: django-admin startproject {project name}
+	- `django-admin startproject {project name}``
 5) Open project thru PyCharm
-6) Configure Project Interpreter
-	- Open Project Structure (ctrl+alt+s)
-	- Select Project: {project name} -> Project Interpreter and add your Virtual environment
-		- Click gearbox to right of Project Interpreter dropdown -> Add Local
-		- Find your virtual environment and select Scripts\python.exe
-7) Configure your Content Root
-	- Open Project Structure (ctrl+alt+s)
-	- Select Project: {project name} -> Project Structure
-	- Select project directory and "Mark as: Sources"
+    - File -> New Project
+    - Browse to the location of your source code and select the root directory
+    - For the "Interpreter" option, click the gear box to the right of the dropdown and select "Add Local".
+        - Navigate to your virtual environment and select the python.exe in the Scripts directory
 8) Add python script runner
-	- Config dropdown -> Edit configurations
+	- Config dropdown (located near the run/debug options in the upper-right hand of the window) -> Edit configurations
 	- + Python
 	- Script = \path\to\project\manage.py
 	- Script parameters = runserver 8000
 9) Create an application
 	- CP: python manage.py startapp {app name}
+10) Code away!
