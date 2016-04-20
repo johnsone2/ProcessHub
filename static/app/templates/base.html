@@ -14,6 +14,7 @@
 <header class="page-header container">
     <div class="col-md-3"><h1>ProcessHub</h1></div>
     {% if request.user and request.user.id %}
+    <p>{{request.user.get_full_name}}</p>
     <div class="col-md-9"><a href="/accounts/logout">Logout</a> </div>
     {% endif %}
 </header>
